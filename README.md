@@ -34,6 +34,12 @@
 
 Scoop is a command-line installer for Windows.
 
+## USAGE
+
+```powershell
+scoop config scoop_repo https://github.com/akirco/Scoop
+```
+
 ## New Features
 
 ```powershell
