@@ -34,16 +34,22 @@
 
 Scoop is a command-line installer for Windows.
 
+## New Features
+
+```powershell
+scoop config proxy_api http://example.com   # dynamic proxy all resources
+```
+
 ## What does Scoop do?
 
 Scoop installs apps from the command line with a minimal amount of friction. It:
 
-- Eliminates [User Account Control](https://learn.microsoft.com/windows/security/application-security/application-control/user-account-control/) (UAC) prompt notifications.
-- Hides the graphical user interface (GUI) of wizard-style installers.
-- Prevents polluting the `PATH` environment variable. Normally, this variable gets cluttered as different apps are installed on the device.
-- Avoids unexpected side effects from installing and uninstalling apps.
-- Resolves and installs dependencies automatically.
-- Performs all the necessary steps to get an app to a working state.
+-   Eliminates [User Account Control](https://learn.microsoft.com/windows/security/application-security/application-control/user-account-control/) (UAC) prompt notifications.
+-   Hides the graphical user interface (GUI) of wizard-style installers.
+-   Prevents polluting the `PATH` environment variable. Normally, this variable gets cluttered as different apps are installed on the device.
+-   Avoids unexpected side effects from installing and uninstalling apps.
+-   Resolves and installs dependencies automatically.
+-   Performs all the necessary steps to get an app to a working state.
 
 Scoop is quite script-friendly. Your environment can become the way you like by using repeatable setups. For example:
 
@@ -85,18 +91,18 @@ By default, `scoop` displays a warning when running `scoop install` or `scoop up
 
 You can tweak the following `aria2` settings with the `scoop config` command:
 
-- aria2-enabled (default: true)
-- aria2-warning-enabled (default: true)
-- [aria2-retry-wait](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-retry-wait) (default: 2)
-- [aria2-split](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-s) (default: 5)
-- [aria2-max-connection-per-server](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-x) (default: 5)
-- [aria2-min-split-size](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-k) (default: 5M)
-- [aria2-options](https://aria2.github.io/manual/en/html/aria2c.html#options) (default: )
+-   aria2-enabled (default: true)
+-   aria2-warning-enabled (default: true)
+-   [aria2-retry-wait](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-retry-wait) (default: 2)
+-   [aria2-split](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-s) (default: 5)
+-   [aria2-max-connection-per-server](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-x) (default: 5)
+-   [aria2-min-split-size](https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-k) (default: 5M)
+-   [aria2-options](https://aria2.github.io/manual/en/html/aria2c.html#options) (default: )
 
 ## Inspiration
 
-- [Homebrew](https://brew.sh/)
-- [Sub](https://signalvnoise.com/posts/3264-automating-with-convention-introducing-sub)
+-   [Homebrew](https://brew.sh/)
+-   [Sub](https://signalvnoise.com/posts/3264-automating-with-convention-introducing-sub)
 
 ## What sort of apps can Scoop install?
 
@@ -112,22 +118,22 @@ If you would like to improve Scoop by adding features or fixing bugs, please rea
 
 If you find Scoop useful and would like to support the ongoing development and maintenance of this project, you can donate here:
 
-- [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DM2SUH9EUXSKJ) (one-time donations)
+-   [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DM2SUH9EUXSKJ) (one-time donations)
 
 ## Known application buckets
 
 The following buckets are known to Scoop:
 
-- [main](https://github.com/ScoopInstaller/Main) - Default bucket which contains popular non-GUI apps.
-- [extras](https://github.com/ScoopInstaller/Extras) - Apps that do not fit the main bucket's [criteria](https://github.com/ScoopInstaller/Scoop/wiki/Criteria-for-including-apps-in-the-main-bucket).
-- [games](https://github.com/Calinou/scoop-games) - Open-source and freeware video games and game-related tools.
-- [nerd-fonts](https://github.com/matthewjberger/scoop-nerd-fonts) -  Nerd Fonts.
-- [nirsoft](https://github.com/ScoopInstaller/Nirsoft) - A collection of over 250+ apps from [Nirsoft](https://nirsoft.net).
-- [sysinternals](https://github.com/niheaven/scoop-sysinternals) - The Sysinternals suite from [Microsoft](https://learn.microsoft.com/sysinternals/).
-- [java](https://github.com/ScoopInstaller/Java) - A collection of Java development kits (JDKs) and Java runtime engines (JREs), Java's virtual machine debugging tools and Java based runtime engines.
-- [nonportable](https://github.com/ScoopInstaller/Nonportable) - Non-portable apps (may trigger UAC prompts).
-- [php](https://github.com/ScoopInstaller/PHP) - Installers for most versions of PHP.
-- [versions](https://github.com/ScoopInstaller/Versions) - Alternative versions of apps found in other buckets.
+-   [main](https://github.com/ScoopInstaller/Main) - Default bucket which contains popular non-GUI apps.
+-   [extras](https://github.com/ScoopInstaller/Extras) - Apps that do not fit the main bucket's [criteria](https://github.com/ScoopInstaller/Scoop/wiki/Criteria-for-including-apps-in-the-main-bucket).
+-   [games](https://github.com/Calinou/scoop-games) - Open-source and freeware video games and game-related tools.
+-   [nerd-fonts](https://github.com/matthewjberger/scoop-nerd-fonts) - Nerd Fonts.
+-   [nirsoft](https://github.com/ScoopInstaller/Nirsoft) - A collection of over 250+ apps from [Nirsoft](https://nirsoft.net).
+-   [sysinternals](https://github.com/niheaven/scoop-sysinternals) - The Sysinternals suite from [Microsoft](https://learn.microsoft.com/sysinternals/).
+-   [java](https://github.com/ScoopInstaller/Java) - A collection of Java development kits (JDKs) and Java runtime engines (JREs), Java's virtual machine debugging tools and Java based runtime engines.
+-   [nonportable](https://github.com/ScoopInstaller/Nonportable) - Non-portable apps (may trigger UAC prompts).
+-   [php](https://github.com/ScoopInstaller/PHP) - Installers for most versions of PHP.
+-   [versions](https://github.com/ScoopInstaller/Versions) - Alternative versions of apps found in other buckets.
 
 The `main` bucket is installed by default. You can make use of more buckets by typing:
 

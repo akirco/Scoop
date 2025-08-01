@@ -365,10 +365,56 @@ function Invoke-CachedAria2Download ($app, $version, $manifest, $architecture, $
     }
 }
 
+
+# proxy resources endpoint
+function ConvertTo-ProxyUrl {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [string]$OriginalUrl,
+        [string]$ProxyApi = (get_config PROXY_API)
+    )
+    begin {
+        $ProxyApi = $ProxyApi.TrimEnd('/')
+    }
+
+    process {
+        try {
+            $uri = [System.Uri]::new($OriginalUrl)
+
+            $domain = $uri.Scheme + '://' + $uri.Authority
+
+            $domain_without_protocol = $uri.Authority
+
+            $setUrl = "${ProxyApi}?target=$([System.Uri]::EscapeDataString($domain))"
+
+            Write-Verbose "Sending proxy setup request: $setUrl"
+
+            $response = Invoke-WebRequest -Uri $setUrl -Method Get -UseBasicParsing -ErrorAction Stop
+
+            if ($response.StatusCode -ne 200) {
+                throw "Proxy setup failed with status $($response.StatusCode)"
+            }
+
+            $proxyPath = $uri.PathAndQuery.TrimStart('/')
+            $proxyUrl = "${ProxyApi}/p/$($domain_without_protocol)/${proxyPath}"
+
+            Write-Verbose "Converted URL: $OriginalUrl -> $proxyUrl"
+            return $proxyUrl
+        } catch {
+            Write-Error "Error converting to proxy URL: $_"
+            return $OriginalUrl
+        }
+    }
+}
+
+
 # download with filesize and progress indicator
 function Invoke-Download ($url, $to, $cookies, $progress) {
+    $proxy_api = get_config PROXY_API
     $reqUrl = ($url -split '#')[0]
-    $wreq = [Net.WebRequest]::Create($reqUrl)
+    $proxyed_reqUrl = ConvertTo-ProxyUrl $reqUrl $proxy_api
+    $wreq = [Net.WebRequest]::Create($proxyed_reqUrl)
     if ($wreq -is [Net.HttpWebRequest]) {
         $wreq.UserAgent = Get-UserAgent
         if (-not ($url -match 'sourceforge\.net' -or $url -match 'portableapps\.com')) {
