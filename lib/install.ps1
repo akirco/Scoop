@@ -540,24 +540,27 @@ function Format-DownloadProgress ($url, $read, $total, $console) {
 
     # generate dashes to symbolise completed
     if ($completed -gt 1) {
-        $dashes = [string]::Join('', ((1..$completed) | ForEach-Object { '=' }))
+        $dashes = [string]::Join('', ((1..$completed) | ForEach-Object { '█' }))
     }
 
     # this is why we calculate $completed - 1 above
     $dashes += switch ($p) {
-        100 { '=' }
-        default { '>' }
+        100 { '█' }
+        default { '░' }
     }
 
     # the remaining characters are filled with spaces
     $spaces = switch ($dashes.Length) {
         $midwidth { [string]::Empty }
         default {
-            [string]::Join('', ((1..($midwidth - $dashes.Length)) | ForEach-Object { ' ' }))
+            [string]::Join('░', ((1..($midwidth - $dashes.Length)) | ForEach-Object { '' }))
         }
     }
 
-    "$left [$dashes$spaces] $right"
+    $bold = "`e[1m"
+    $reset = "`e[0m"
+
+    "$left $bold[$reset$dashes$spaces$bold]$reset $right"
 }
 
 function Write-DownloadProgress ($read, $total, $url) {
