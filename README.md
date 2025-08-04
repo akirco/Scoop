@@ -42,6 +42,8 @@ scoop config scoop_repo https://github.com/akirco/Scoop
 
 ## New Features
 
+> fork [anyproxy-cfworker](https://github.com/akirco/anyproxy-cfworker.git) and deploy to cloudflare worker
+
 ```powershell
 scoop config proxy_api http://example.com   # dynamic proxy all resources
 ```

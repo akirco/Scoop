@@ -413,7 +413,7 @@ function ConvertTo-ProxyUrl {
 function Invoke-Download ($url, $to, $cookies, $progress) {
     $proxy_api = get_config PROXY_API
     $reqUrl = ($url -split '#')[0]
-    $proxyed_reqUrl = ConvertTo-ProxyUrl $reqUrl $proxy_api
+    $proxyed_reqUrl = ConvertTo-ProxyUrl $reqUrl $proxy_api -ErrorAction SilentlyContinue
     Write-Host "$proxyed_reqUrl" -ForegroundColor DarkCyan
     $wreq = [Net.WebRequest]::Create($proxyed_reqUrl)
     if ($wreq -is [Net.HttpWebRequest]) {
